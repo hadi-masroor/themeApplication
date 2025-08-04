@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:theme_app/page_one.dart';
 import 'package:theme_app/theme_provider.dart';
 
 void main() {
@@ -21,21 +22,30 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
     debugShowCheckedModeBanner: false,
     title: ' Theme ',
+    //
+    //       LIGHT THEME
+    //
     theme: ThemeData(
+      primaryColor: Colors.red,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.blue,
-        background: Colors.amber,
-        brightness: Brightness.light,
-        primary: Colors.blue,
+        seedColor: Colors.green,
+       
         ),
-      //brightness: Brightness.light,
       useMaterial3: true,
     ),
+    //
+    //              DARK THEME
+    //
     darkTheme: ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple,brightness: Brightness.dark),
-      //brightness: Brightness.dark,
+      primaryColor: Colors.white,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.green,
+        brightness: Brightness.dark),
       useMaterial3: true,
     ),
+    //
+    //
+    //
     themeMode: themeProvider.themeMode,
     home: const MyHomePage(),
   );
@@ -55,11 +65,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(title: Text('Theme'),),
       body: Column(
         children: [
-          Center
-          (child: Text('Hello'),),  //end child
+          Center(
+            child: Text('Hello',style: TextStyle(color: Theme.of(context).primaryColor),),),  //end child
           ElevatedButton(onPressed: (){
             context.read<ThemeProvider>().changeTheme();
-          }, child: Text('Click Change Theme'))
+          }, child: Text('Click Change Theme')), //end child
+          
+          ElevatedButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageOne(),));
+          }, child: Text('Go to page One')),
+
           
           ],),
     );

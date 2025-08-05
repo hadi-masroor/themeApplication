@@ -1,13 +1,42 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-  static const Color warning = Color(0xFFE53935);
-  static const Color success = Color(0xFF43A047);
-  static const Color customText = Color(0xFF4A148C);
-}
+@immutable
+class AppColors extends ThemeExtension<AppColors> {
+  final Color colorOne;
+  final Color colorTwo;
+  final Color colorThree;
+  final Color colorFour;
 
-extension CustomColors on ThemeData {
-  Color get warningColor => AppColors.warning;
-  Color get successColor => AppColors.success;
-  Color get customTextColor => AppColors.customText;
+  const AppColors({
+    required this.colorOne,
+    required this.colorTwo,
+    required this.colorThree,
+    required this.colorFour,
+  });
+
+  @override
+  AppColors copyWith({
+    Color? colorOne,
+    Color? colorTwo,
+    Color? colorThree,
+    Color? colorFour,
+  }) {
+    return AppColors(
+      colorOne: colorOne ?? this.colorOne,
+      colorTwo: colorTwo ?? this.colorTwo,
+      colorThree: colorThree ?? this.colorThree,
+      colorFour: colorFour ?? this.colorFour,
+    );
+  }
+
+  @override
+  AppColors lerp(ThemeExtension<AppColors>? other, double t) {
+    if (other is! AppColors) return this;
+    return AppColors(
+      colorOne: Color.lerp(colorOne, other.colorOne, t)!,
+      colorTwo: Color.lerp(colorTwo, other.colorTwo, t)!,
+      colorThree: Color.lerp(colorThree, other.colorThree, t)!,
+      colorFour: Color.lerp(colorFour, other.colorFour, t)!,
+    );
+  }
 }

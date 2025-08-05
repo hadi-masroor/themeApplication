@@ -11,15 +11,7 @@ It also includes support for **custom color themes** using a theme extension.
 - State management using `Provider`
 - Custom color themes via `ThemeExtension`
 - Clean and minimal UI
-
----
-
-## 📸 Screenshots
-
-| Light Mode | Dark Mode |
-|------------|-----------|
-| ![Light](images/light.png) | ![Dark](images/dark.png) |
-
+  
 ---
 
 ## 🚀 Getting Started
